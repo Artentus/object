@@ -156,6 +156,7 @@ where
             self.header.e_machine(self.endian),
             self.header.is_class_64(),
         ) {
+            (elf::EM_ART32, false) => Architecture::Art32,
             (elf::EM_AARCH64, true) => Architecture::Aarch64,
             (elf::EM_AARCH64, false) => Architecture::Aarch64_Ilp32,
             (elf::EM_ARM, _) => Architecture::Arm,

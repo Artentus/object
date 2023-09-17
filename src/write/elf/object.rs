@@ -121,6 +121,7 @@ impl<'a> Object<'a> {
 
     fn elf_has_relocation_addend(&self) -> Result<bool> {
         Ok(match self.architecture {
+            Architecture::Art32 => true,
             Architecture::Aarch64 => true,
             Architecture::Aarch64_Ilp32 => true,
             Architecture::Arm => false,
@@ -325,6 +326,7 @@ impl<'a> Object<'a> {
         // Start writing.
         let e_type = elf::ET_REL;
         let e_machine = match self.architecture {
+            Architecture::Art32 => elf::EM_ART32,
             Architecture::Aarch64 => elf::EM_AARCH64,
             Architecture::Aarch64_Ilp32 => elf::EM_AARCH64,
             Architecture::Arm => elf::EM_ARM,
@@ -485,6 +487,18 @@ impl<'a> Object<'a> {
                 debug_assert_eq!(section_offsets[index].reloc_offset, writer.len());
                 for reloc in &section.relocations {
                     let r_type = match self.architecture {
+                        Architecture::Art32 => match (reloc.kind, reloc.encoding, reloc.size) {
+                            (RelocationKind::Absolute, RelocationEncoding::Generic, 32) => {
+                                elf::R_ART32_ABS32
+                            }
+                            (RelocationKind::Relative, RelocationEncoding::Generic, 32) => {
+                                elf::R_ART32_REL32
+                            }
+                            (RelocationKind::Elf(x), _, _) => x,
+                            _ => {
+                                return Err(Error(format!("unimplemented relocation {:?}", reloc)));
+                            }
+                        },
                         Architecture::Aarch64 => match (reloc.kind, reloc.encoding, reloc.size) {
                             (RelocationKind::Absolute, RelocationEncoding::Generic, 64) => {
                                 elf::R_AARCH64_ABS64

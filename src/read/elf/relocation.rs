@@ -240,6 +240,11 @@ fn parse_relocation<Elf: FileHeader>(
     let mut encoding = RelocationEncoding::Generic;
     let is_mips64el = header.is_mips64el(endian);
     let (kind, size) = match header.e_machine(endian) {
+        elf::EM_ART32 => match reloc.r_type(endian, false) {
+            elf::R_ART32_ABS32 => (RelocationKind::Absolute, 32),
+            elf::R_ART32_REL32 => (RelocationKind::Relative, 32),
+            r_type => (RelocationKind::Elf(r_type), 0),
+        },
         elf::EM_AARCH64 => {
             if header.is_type_64() {
                 match reloc.r_type(endian, false) {

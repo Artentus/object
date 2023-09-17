@@ -219,6 +219,8 @@ pub const ET_HIPROC: u16 = 0xffff;
 // Values for `FileHeader*::e_machine`.
 /// No machine
 pub const EM_NONE: u16 = 0;
+/// Art32
+pub const EM_ART32: u16 = 0x7000;
 /// AT&T WE 32100
 pub const EM_M32: u16 = 1;
 /// SUN SPARC
@@ -2030,6 +2032,37 @@ pub fn gnu_hash(name: &[u8]) -> u32 {
     }
     hash
 }
+
+// Art32 specific definitions.
+
+// art32 values for `Rel*::r_type`.
+
+/// No reloc
+pub const R_ART32_NONE: u32 = 0;
+/// Direct 32 bit
+pub const R_ART32_ABS32: u32 = 1;
+/// PC relative 32 bit
+pub const R_ART32_REL32: u32 = 2;
+/// 48 bit absolute jump sequence
+pub const ABS_JMP48: u32 = 10;
+/// 64 bit absolute jump sequence
+pub const ABS_JMP64: u32 = 11;
+/// 48 bit absolute address calculation sequence
+pub const ABS_ADDR48: u32 = 12;
+/// 64 bit absolute address calculation sequence
+pub const ABS_ADDR64: u32 = 13;
+/// 64 bit absolute store sequence
+pub const ABS_ST64: u32 = 14;
+/// 48 bit PC relative jump sequence
+pub const REL_JMP48: u32 = 20;
+/// 64 bit PC relative jump sequence
+pub const REL_JMP64: u32 = 21;
+/// 48 bit PC relative address calculation sequence
+pub const REL_ADDR48: u32 = 22;
+/// 64 bit PC relative address calculation sequence
+pub const REL_ADDR64: u32 = 23;
+/// 64 bit PC relative store sequence
+pub const REL_ST64: u32 = 24;
 
 // Motorola 68k specific definitions.
 

@@ -4,6 +4,7 @@
 #[non_exhaustive]
 pub enum Architecture {
     Unknown,
+    Art32,
     Aarch64,
     #[allow(non_camel_case_types)]
     Aarch64_Ilp32,
@@ -39,6 +40,7 @@ impl Architecture {
     pub fn address_size(self) -> Option<AddressSize> {
         match self {
             Architecture::Unknown => None,
+            Architecture::Art32 => Some(AddressSize::U32),
             Architecture::Aarch64 => Some(AddressSize::U64),
             Architecture::Aarch64_Ilp32 => Some(AddressSize::U32),
             Architecture::Arm => Some(AddressSize::U32),
