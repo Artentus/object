@@ -2044,25 +2044,25 @@ pub const R_ART32_ABS32: u32 = 1;
 /// PC relative 32 bit
 pub const R_ART32_REL32: u32 = 2;
 /// 48 bit absolute jump sequence
-pub const ABS_JMP48: u32 = 10;
+pub const R_ART32_ABS_JMP48: u32 = 10;
 /// 64 bit absolute jump sequence
-pub const ABS_JMP64: u32 = 11;
+pub const R_ART32_ABS_JMP64: u32 = 11;
 /// 48 bit absolute address calculation sequence
-pub const ABS_ADDR48: u32 = 12;
+pub const R_ART32_ABS_ADDR48: u32 = 12;
 /// 64 bit absolute address calculation sequence
-pub const ABS_ADDR64: u32 = 13;
+pub const R_ART32_ABS_ADDR64: u32 = 13;
 /// 64 bit absolute store sequence
-pub const ABS_ST64: u32 = 14;
+pub const R_ART32_ABS_ST64: u32 = 14;
 /// 48 bit PC relative jump sequence
-pub const REL_JMP48: u32 = 20;
+pub const R_ART32_REL_JMP48: u32 = 20;
 /// 64 bit PC relative jump sequence
-pub const REL_JMP64: u32 = 21;
+pub const R_ART32_REL_JMP64: u32 = 21;
 /// 48 bit PC relative address calculation sequence
-pub const REL_ADDR48: u32 = 22;
+pub const R_ART32_REL_ADDR48: u32 = 22;
 /// 64 bit PC relative address calculation sequence
-pub const REL_ADDR64: u32 = 23;
+pub const R_ART32_REL_ADDR64: u32 = 23;
 /// 64 bit PC relative store sequence
-pub const REL_ST64: u32 = 24;
+pub const R_ART32_REL_ST64: u32 = 24;
 
 // Motorola 68k specific definitions.
 
